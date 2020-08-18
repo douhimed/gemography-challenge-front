@@ -46,7 +46,7 @@ const App = (props) => {
   const index = currentPage * pageSize.value;
   return (
     <div className="ui container" style={{ margin: "50px 0px" }}>
-      <h2>GiitHub Repositories</h2>
+      <h2>GitHub Repositories</h2>
       {error && <Error message={error} />}
       {isLoading && !error && <Spinner />}
       {!isLoading && (
