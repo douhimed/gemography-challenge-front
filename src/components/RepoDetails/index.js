@@ -3,7 +3,7 @@ import { formatDate } from "../../utilities/dates";
 
 const RepoDetails = ({ repo }) => {
   return (
-    <div className="card" key={repo.id}>
+    <div className="card">
       <div className="image">
         <img src={repo.owner.avatar_url} alt="Avatar" />
       </div>
