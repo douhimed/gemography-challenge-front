@@ -25,7 +25,7 @@ const App = (props) => {
     setLoading(true);
     const getRepos = async () => {
       try {
-        const { data } = await axios.get(`${GIT_URL}/search/repositories`, {
+        const { data } = await axios.get(`${GIT_URL}/search/repositoriess`, {
           params: {
             q: `created:>${getDate()}`,
           },
@@ -36,6 +36,7 @@ const App = (props) => {
         setLoading(false);
       } catch (error) {
         setError(error.message);
+        setLoading(true);
         console.log(error);
       }
     };
