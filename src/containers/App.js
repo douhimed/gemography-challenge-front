@@ -19,6 +19,7 @@ const App = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [pageSize, setPageSize] = useState(options[0]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -43,9 +44,6 @@ const App = (props) => {
   }, []);
 
   const index = currentPage * pageSize.value;
-
-  if (data) setRepos(data.items);
-
   return (
     <div className="ui container" style={{ margin: "50px 0px" }}>
       <h2>GitHub Repositories</h2>
