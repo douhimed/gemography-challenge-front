@@ -28,7 +28,7 @@ const App = (props) => {
   const index = currentPage * pageSize.value;
 
   let repos = [];
-  //if (data) repos = [...data.items];
+  if (data) repos = [...data.items];
 
   let reposUI = <Error message="No data found" color="green" />;
   if (repos.length > 0)
