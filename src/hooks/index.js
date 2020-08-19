@@ -8,6 +8,9 @@ export const useFetch = (url, params, conditions) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
+
     axios
       .get(GIT_URL + url, {
         params: {
@@ -16,12 +19,10 @@ export const useFetch = (url, params, conditions) => {
       })
       .then(({ data }) => {
         setData(data);
-        setError(null);
         setLoading(false);
       })
       .catch((error) => {
         setError(error.message);
-        setLoading(true);
       });
   }, conditions);
 

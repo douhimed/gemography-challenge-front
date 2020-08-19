@@ -34,7 +34,7 @@ const App = (props) => {
     <div className="ui container" style={{ margin: "50px 0px" }}>
       <h2>GitHub Repositories created in the last month</h2>
       {error && <Error message={error} />}
-      {isLoading && !error && <Spinner />}
+      {isLoading && <Spinner />}
       {!isLoading && (
         <div className="ui grid">
           <div className="left floated six wide column">
