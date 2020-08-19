@@ -7,6 +7,7 @@ import Dropdown from "./../components/Dropdown/index";
 import Pagination from "./../components/Pagination/index";
 import Spinner from "../components/Spinner/index.js";
 import Error from "../components/Error/index.js";
+import { useFetch } from "./../hooks/index";
 
 const options = [
   { value: 5, label: 5 },
@@ -15,36 +16,20 @@ const options = [
 ];
 
 const App = (props) => {
-  const [repos, setRepos] = useState([]);
-  const [isLoading, setLoading] = useState(false);
   const [pageSize, setPageSize] = useState(options[0]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setLoading(true);
-    const getRepos = async () => {
-      try {
-        const { data } = await axios.get(`${GIT_URL}/search/repositoriess`, {
-          params: {
-            q: `created:>${getDate()}`,
-          },
-        });
-
-        setRepos(data.items);
-        setError(null);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(true);
-        console.log(error);
-      }
-    };
-
-    getRepos();
-  }, []);
+  const [data, error, isLoading] = useFetch(
+    "/search/repositories",
+    { q: `created:>${getDate()}` },
+    []
+  );
 
   const index = currentPage * pageSize.value;
+
+  let repos = [];
+  if (data) repos = [...data.items];
+
   return (
     <div className="ui container" style={{ margin: "50px 0px" }}>
       <h2>GitHub Repositories created in the last month</h2>
